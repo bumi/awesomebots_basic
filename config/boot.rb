@@ -7,6 +7,8 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
+require File.join(PADRINO_ROOT, "lib/awesome_bot_message.rb")
+
 ##
 # Enable devel logging
 #

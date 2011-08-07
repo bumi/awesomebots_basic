@@ -13,6 +13,13 @@ gem 'haml'
 # Test requirements
 gem "heroku"
 
+# bots
+gem "activesupport"
+gem "nokogiri"
+gem "json"
+gem "twitter"
+gem "rest-client"
+
 # Padrino
 gem 'padrino', '0.10.1'
 # Padrino EDGE
