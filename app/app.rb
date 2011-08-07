@@ -43,6 +43,10 @@ class Base < Padrino::Application
     ].sample
   end
   
+  post "/image" do
+    params[:image]
+  end
+  
   ##
   # Caching support
   #
