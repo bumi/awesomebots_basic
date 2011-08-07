@@ -8,7 +8,7 @@ Base.controllers :should_do do
   post :decide do
     name = @message.name.downcase == "i" ? @message.user_name : @message.name
     action = @message.action.delete("?")
-    action.gsub!(/\bme\b/, @message.user_name)
+    action.gsub!(/\bme\b/, @message.user_name.to_s)
     
     if [1,0][rand(2)] == 1 #should_do?
       "YEAH!! #{name} #{action}"
