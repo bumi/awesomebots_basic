@@ -43,7 +43,7 @@ class Base < Padrino::Application
     ].sample
   end
   
-  post "/image" do
+  post "/image/:image" do
     params[:image]
   end
   
