@@ -33,6 +33,16 @@ class Base < Padrino::Application
     ].sample
   end
   
+  post "/jack" do
+    [
+      "http://cl.ly/0v3W451W0H1c2c3M1B1S/121_24jack_bauer1.jpeg",
+      "http://geekgirlonthestreet.files.wordpress.com/2010/02/jack-bauer-2.jpg",
+      "http://www.dizidizi.net/wp-content/uploads/2009/04/jack_bauer.jpg",
+      "http://kkjames.files.wordpress.com/2008/08/jack-bauer.jpg",
+      "http://geekgirlonthestreet.files.wordpress.com/2010/02/jack-bauer.jpg"
+    ].sample
+  end
+  
   ##
   # Caching support
   #
