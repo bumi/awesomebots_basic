@@ -1,0 +1,1 @@
+web: bundle exec padrino start -e production -p $PORT
