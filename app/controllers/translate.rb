@@ -1,12 +1,13 @@
 Base.controllers :translate do
   
   before do 
-    @message = AwesomeBotMessage.new(request.body,{:matches => [:sentence]})
+    @message = AwesomeBotMessage.new(request.body,{:matches => [:language, :sentence]})
   end
   
-  #regex: \/translate (.*)
+  #regex: ^\/translate\s?(?:|to (.{2})) (.*)
   post "/translate" do
-    response = RestClient.get 'https://ajax.googleapis.com/ajax/services/language/translate', {:params => {:v => "1.0", :q => @message.sentence, :langpair => "|en"}}
+    language = @message.language.blank? ? "en" : @message.language
+    response = RestClient.get 'https://ajax.googleapis.com/ajax/services/language/translate', {:params => {:v => "1.0", :q => @message.sentence, :langpair => "|#{language}"}}
     
     data = JSON.parse(response)
     
