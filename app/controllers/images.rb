@@ -31,6 +31,7 @@ Base.controllers :images do
       "http://omgunmen.de/wp-content/uploads/2010/07/how-to-be-awesome.jpg",
       "http://knowyourmeme.com/i/288/original/Fucking_awesome_sparta.jpg",
       "http://www.comixconnection.com/uploaded_images/Awesome[1]-775337.jpg",
+      "http://elder-geek.com/wp-content/uploads/2010/07/tripleawesome.jpg"
     ],
     "nice" => [
       "http://4.bp.blogspot.com/_P9iTB2mmEPQ/S7r4ajqlm_I/AAAAAAAAAtQ/XVWXpjESJn0/s320/borat-very-nice.jpg"
