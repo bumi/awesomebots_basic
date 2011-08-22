@@ -19,6 +19,7 @@ gem "nokogiri"
 gem "json"
 gem "twitter"
 gem "rest-client"
+gem "pismo"
 
 # Padrino
 gem 'padrino', '0.10.1'
