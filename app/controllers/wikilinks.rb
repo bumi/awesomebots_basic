@@ -152,10 +152,10 @@ Base.controllers :wikilinks do
       interwiki = /^(.+):/.match(link_to_parse)
       if interwiki && @interwiki.keys.include?(interwiki[1])
         parsed_url = link_to_parse.dup.force_encoding('ASCII-8BIT').gsub(/^#{interwiki[1]}:/, '').gsub(' ','_').gsub(/[^a-zA-Z0-9_\.\-]/){'%%%02x' % $&.ord}
-        @interwiki[interwiki[1]].dup.gsub('$1', parsed_url)
+        reallinks << @interwiki[interwiki[1]].dup.gsub('$1', parsed_url)
       else
         parsed_url = link_to_parse.dup.force_encoding('ASCII-8BIT').gsub(' ','_').gsub(/[^a-zA-Z0-9_\.\-]/){'%%%02x' % $&.ord}
-        @interwiki['en'].dup.gsub('$1', parsed_url)
+        reallinks << @interwiki['en'].dup.gsub('$1', parsed_url)
       end
     end
     {:type => "PasteMessage", :body => reallinks.join(" ")}.to_json
