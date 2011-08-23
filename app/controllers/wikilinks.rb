@@ -157,7 +157,7 @@ Base.controllers :wikilinks do
         reallinks << @interwiki['en'].dup.gsub('$1', parsed_url)
       end
     end
-    {:type => "PasteMessage", :body => reallinks.join(" ")}.to_json
+    {:type => "TextMessage", :body => reallinks.join(" ")}.to_json
   end
 
   
