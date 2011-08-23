@@ -144,7 +144,7 @@ Base.controllers :wikilinks do
   # we do another regexp parse inside anyway, above one is only to exclude messages ending with "#"
   #  /\[\[([ %!\"$&'()*,\-.\/0-9:;=?@A-Z\\^_\`a-z~\x80-\xFF]+)(\||\]\])/n # regex for valid MediaWiki Title in a interwiki link
   post :links do
-    wikilinks = @message.body.scan(/\[\[([ %!\"$&'()*,\-.\/0-9:;=?@A-Z\\^_\`a-z~\u0080-\u00FF]+)(\||\]\])/u)
+    wikilinks = @message.body.scan(/\[\[([ %!\"$&'()*,\-.\/0-9:;=?@A-Z\\^_\`a-z~\u0080-\uFFFF]+)(\||\]\])/u)
 
     reallinks = []
     wikilinks.each do |wikilink|
