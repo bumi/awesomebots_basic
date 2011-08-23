@@ -137,24 +137,23 @@ Base.controllers :wikilinks do
         langs[wikipedia_lang] = "http://#{wikipedia_lang}.wikipedia.org/wiki/$1"
       end
       INTERWIKI_LINKS.merge(langs)
-    end
+    end.freeze
   end
   
-  # regex: /\[\[(.+)\]\].*(?:(?!\#).)$/
+  # regex: /\[\[([ %!\"$&'()*,\-.\/0-9:;=?@A-Z\\^_\`a-z~\u0080-\uFFFF]+)(\||\]\])/
   # we do another regexp parse inside anyway, above one is only to exclude messages ending with "#"
-  #  /\[\[([ %!\"$&'()*,\-.\/0-9:;=?@A-Z\\^_\`a-z~\x80-\xFF]+)(\||\]\])/n # regex for valid MediaWiki Title in a interwiki link
   post :links do
-    wikilinks = @message.body.scan(/\[\[([ %!\"$&'()*,\-.\/0-9:;=?@A-Z\\^_\`a-z~\u0080-\u00FF]+)(\||\]\])/u)
+    wikilinks = @message.body.scan(/\[\[([ %!\"$&'()*,\-.\/0-9:;=?@A-Z\\^_\`a-z~\u0080-\uFFFF]+)(\||\]\])/u)
 
     reallinks = []
     wikilinks.each do |wikilink|
-      link_to_parse = wikilink.first # has the match
+      link_to_parse = wikilink.first.dup.gsub(' ','_') # has the match
       interwiki = /^(.+):/.match(link_to_parse)
       if interwiki && @interwiki.keys.include?(interwiki[1])
-        parsed_url = link_to_parse.dup.force_encoding('ASCII-8BIT').gsub(/^#{interwiki[1]}:/, '').gsub(' ','_').gsub(/[^a-zA-Z0-9_\.\-:]/){'%%%02X' % $&.ord}
+        parsed_url = URI.encode_www_form_component(link_to_parse.gsub(/^#{interwiki[1]}:/, ''))
         reallinks << @interwiki[interwiki[1]].dup.gsub('$1', parsed_url)
       else
-        parsed_url = link_to_parse.dup.force_encoding('ASCII-8BIT').gsub(' ','_').gsub(/[^a-zA-Z0-9_\.\-:]/){'%%%02X' % $&.ord}
+        parsed_url = URI.encode_www_form_component(link_to_parse)
         reallinks << @interwiki['en'].dup.gsub('$1', parsed_url)
       end
     end
