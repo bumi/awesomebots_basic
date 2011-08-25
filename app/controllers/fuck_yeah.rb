@@ -6,7 +6,7 @@ Base.controllers :fuck_yeah do
   
   # regex ^fuck yeah (.+)$
   post :show do
-    { :body => "http://fuckyeah.herokuapp.com/#{@message.query}#jpg" }
+    { :body => "http://fuckyeah.herokuapp.com/#{@message.query}#jpg" }.to_json
   end
   
   
