@@ -6,7 +6,7 @@ Base.controllers :fuck_yeah do
   
   # regex ^fuck yeah (.+)$
   post :show do
-    query = @message.query.gsub(/\s+/,"_")
+    query = @message.query.gsub(/\s+/,"%20")
     { :body => "http://abf-fuckyeah.herokuapp.com/#{query}#jpg" }.to_json
   end
   
