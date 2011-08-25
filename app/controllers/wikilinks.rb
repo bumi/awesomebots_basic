@@ -127,7 +127,15 @@ Base.controllers :wikilinks do
   "wiktionary" => "http://en.wiktionary.org/wiki/$1",
   "wlug" => "http://www.wlug.org.nz/$1",
   "zwiki" => "http://zwiki.org/$1",
-  "zzz wiki" => "http://wiki.zzz.ee/index.php/$1"}
+  "zzz wiki" => "http://wiki.zzz.ee/index.php/$1",
+  #Wikimedia Family-specific short interwikis
+  "s" => "http://en.wikisource.org/wiki/$1",
+  "w" => "http://en.wikipedia.org/wiki/$1",
+  "n" => "http://en.wikinews.org/wiki/$1",
+  "c" => "http://commons.wikimedia.org/wiki/$1",
+  "commons" => "http://commons.wikimedia.org/wiki/$1",
+  "meta" => "http://meta.wikimedia.org/wiki/$1"
+  }
 
   before do 
     @message = AwesomeBotMessage.new(request.body)
