@@ -9,7 +9,7 @@ Base.controllers :links do
     doc = Pismo::Document.new @message.url
     
     if doc.titles.last.present?
-      details = %Q{About #{@message.url}:\n-----------\n#{doc.titles.last}:\n#{doc.lede}\n#{doc.keywords(:limit=>5).map{|k| "##{k[0]}"}.join(", ")}}
+      details = %Q{About #{@message.url}:\n-----------\n#{doc.titles.last}:\n#{doc.lede}\n}
     else
       details = "" # send an empty body to not paste anything
     end
